@@ -1,9 +1,9 @@
 # Build Systems
 
-## Ara ara vaktim olursa düzenlemeye çalışacağım.
+## Ara ara vaktim olursa düzenlemeye çalışacağım
 
 - Make
-- CMake
+- [CMake](CMake/README.md)
 - QMake
 - Ninja
 - GNU Make

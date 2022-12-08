@@ -3,6 +3,7 @@
 Aşağıda örnek bir `CMakeLists.txt` dosyası açıklamaları ile birlikte gösterilmektedir.
 
 ~~~CMake
+
     # Minimum gereken CMake sürümü belirtilir.
     cmake_minimum_required(VERSION 3.24)
 
@@ -43,6 +44,7 @@ Aşağıda örnek bir `CMakeLists.txt` dosyası açıklamaları ile birlikte gö
             Qt::Gui
             Qt::Widgets
             )
+    
     # Eğer proje Windows platformunda çalıştırılıyorsa, gerekli Qt dll dosyalarını proje dizinine kopyalar
     if (WIN32)
         set(DEBUG_SUFFIX)
@@ -72,4 +74,5 @@ Aşağıda örnek bir `CMakeLists.txt` dosyası açıklamaları ile birlikte gö
                     "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
         endforeach (QT_LIB)
     endif ()
+
 ~~~
