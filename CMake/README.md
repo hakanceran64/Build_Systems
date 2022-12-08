@@ -42,6 +42,34 @@ Yukarıdaki kodda, `<dizin>` yerine aranacak dizinin tam adresi yazılmalıdır.
 
 > **Not:** *CMAKE_PREFIX_PATH* değişkeni, sadece bir uygulamanın gerekli kütüphaneleri bulabilmesi için kullanılmaz. Aynı zamanda bir uygulamanın gerekli bağımlıklarını da bulabilmesi için bu değişken kullanılabilir. Örneğin, bir uygulama `QtCore` ve `QtGui` kütüphanelerini kullanıyorsa, bu uygulamanın gerekli bağımlıkları `QtCore` ve `QtGui` kütüphaneleridir. Eğer bu bağımlıkların bulunmadığı bir sistemde bu uygulama çalıştırılmaya çalışılırsa, uygulama çalışmayacaktır.
 
+## find_package()
+
+CMake, bir uygulamanın gerekli bağımlılıklarını bulabilmek için `find_package()` fonksiyonunu kullanır. Bu fonksiyon ile uygulamanın gerekli kütüphaneleri belirtilir ve CMake bu kütüphaneleri bulmaya çalışır. Eğer kütüphaneler bulunursa CMake uygulamanın gerekli bağımlılıklarını otomatik olarak ekler.
+
+`find_package()` fonksiyonu, en basit anlamda aşağıdaki gibi kullanılabilir.
+
+> **Not:** Tam imzanın çok daha karmaşık olduğunu unutmayın!
+
+~~~CMake
+
+    find_package(<paket> [COMPONENTS <bileşenler>...] [REQUIRED])
+
+~~~
+
+Yukarıdaki kodda, `<paket>` yerine aranacak paketin adı yazılır. **COMPONENTS** anahtar kelimesi ile aranacak paketin bileşenleri belirtir. **REQUIRED** anahtar kelimesi ise paketin bulunmaması durumunda CMake'in bir hata mesajı üretmesini sağlar.
+
+Örnek olarak, bir uygulamanın `QtCore` ve `QtGui` kütüphanelerini kullandığını varsayalım. Bu uygulamanın gerekli bağımlıklarını bulabilmesi için aşağıdaki gibi bir kod yazılabilir:
+
+~~~CMake
+
+    find_package(Qt6 COMPONENTS Core Gui REQUIRED)
+
+~~~
+
+Bu kodda, `find_package()` fonksiyonu kullanılarak Qt6 paketi aranır ve **Core** ve **Gui** bileşenleri bulunmaya çalışılır. Eğer bu bileşenler bulunursa, CMake uygulamanın gerekli bağımlıklarını otomatik olarak ekler. Eğer bileşenler bulunamazsa, CMake bir hata mesajı üretir ve uygulama derlenmez.
+
+> Not: find_package() fonksiyonunun birinci parametresi olarak aranacak paketin adı değil de adresi de verilebilir. Bu durumda, paketin bulunup bulunmadığı kontrol edilmez ve sadece verilen adreste bulunan paket kullanılır ve paketin bulunacağı dizin doğrudan belirtildiği için arama işlemi daha hızlı olacaktır.
+
 ## CMake Örnekleri
 
 - [Example 1](Example_1.md)
